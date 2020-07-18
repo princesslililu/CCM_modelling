@@ -9,6 +9,7 @@
 
 library(shiny)
 
+
 # Define UI for application that draws a histogram
 ui <- fluidPage(
 
@@ -18,7 +19,8 @@ ui <- fluidPage(
     # Sidebar with a slider input for number of bins 
     sidebarLayout(
         sidebarPanel(
-            h4('Set Models Parameter Below'), 
+            h4('Set Models Parameter Below'),
+            img(src='CCM_eqn.png'),
             # Set drainage times for each pool
             sliderInput("F1", "F1: carbon influx", 
                         min = 1, max = 100, value = 50, step= 1),
@@ -29,7 +31,10 @@ ui <- fluidPage(
      
     # meant to show number for CCM simple formula
         mainPanel(
-            span(textOutput("CCM"), style="color:red")
+            h3('Simple of model of Algal CCM by Sharkey & Berry, 1985'),
+            img(src='CCM_fig.png', height = 300, width = 350),
+            h2('Model output'),
+            span(textOutput("CCM"), style="font-size:30px")
         )
         
     )
@@ -38,7 +43,9 @@ ui <- fluidPage(
 server <- function(input, output) {
 
     output$CCM <- renderText({
-        -7.9+27*(input$F3/input$F3)
+        paste(HTML("13-C discrimination:"),
+        -7.9+27*(input$F3/input$F1)
+        )
     })
 }    
 # Run the application 

@@ -31,12 +31,16 @@ ui <- fluidPage(
      
     # meant to show number for CCM simple formula
         mainPanel(
-            h3('Simple of model of Algal CCM by Sharkey & Berry, 1985'),
-            img(src='CCM_fig.png', height = 300, width = 350),
-            h2('Model output'),
-            span(textOutput("CCM"), style="font-size:30px")
+            tabsetPanel(
+            tabPanel("Model",
+                h3('Simple of model of Algal CCM by Sharkey & Berry, 1985'),
+                img(src='CCM_fig.png', height = 300, width = 350),
+                h2('Model output'),
+                span(textOutput("CCM"), style="font-size:30px")
+            ),
+            tabPanel("Explanation")
+            )
         )
-        
     )
 )
 # Define server logic required to draw a histogram
